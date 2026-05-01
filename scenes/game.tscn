@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ds0o5rbpdxchq" path="res://scenes/character/character.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://dy2xdosh7fxa7" path="res://assets/Dungeon_Tileset.png" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://13dbwhusnua1" path="res://scenes/enemy/enemy.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://npfi02adxrqw" path="res://scenes/collectables/kibble.tscn" id="3_lnu2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
@@ -141,7 +142,7 @@ tile_map_data = PackedByteArray("AAD8//z/AAAAAAQAAAD8//3/AAAAAAEAAAD8//7/AAAAAAI
 tile_set = SubResource("TileSet_lbhrr")
 
 [node name="CharacterBody2D" parent="." unique_id=215475587 instance=ExtResource("1_uwrxv")]
-position = Vector2(-28, 65)
+position = Vector2(-31, 69)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1275248586]
 position = Vector2(130, -15)
@@ -150,8 +151,11 @@ zoom = Vector2(3, 3)
 [node name="Kibble" parent="." unique_id=1346766756 instance=ExtResource("3_lnu2h")]
 position = Vector2(-8, 56)
 
-[node name="Kibble2" parent="." unique_id=1585739642 instance=ExtResource("3_lnu2h")]
-position = Vector2(-30, -3)
+[node name="Kibble2" parent="." unique_id=1876828976 instance=ExtResource("3_lnu2h")]
+position = Vector2(-37, -26)
+
+[node name="Enemy" parent="." unique_id=623823556 instance=ExtResource("3_lbhrr")]
+position = Vector2(162, -50)
 
 [connection signal="kibble_collected" from="Kibble" to="CharacterBody2D" method="_on_kibble_collected"]
 [connection signal="kibble_collected" from="Kibble2" to="CharacterBody2D" method="_on_kibble_collected"]

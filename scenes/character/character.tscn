@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ceuvcmed5no0m" path="res://assets/dead_cat.png" id="4_fgi2k"]
 [ext_resource type="Texture2D" uid="uid://bmv22u7x6ibm0" path="res://assets/dead_cat_2.png" id="5_f8hpl"]
 [ext_resource type="PackedScene" uid="uid://blajvul1q3a60" path="res://scenes/character/mana_bar.tscn" id="6_7ex5l"]
+[ext_resource type="PackedScene" uid="uid://bo345g3l6vhxq" path="res://scenes/character/health_bar.tscn" id="6_bix7t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pheb"]
 atlas = ExtResource("3_mutn8")
@@ -383,7 +384,7 @@ size = Vector2(10, 5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=215475587]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 131
 script = ExtResource("1_cuyo6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2123965110]
@@ -404,11 +405,17 @@ wait_time = 0.15
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1517945950]
 
-[node name="ManaBar" parent="CanvasLayer" unique_id=335018961 instance=ExtResource("6_7ex5l")]
+[node name="HealthBar" parent="CanvasLayer" unique_id=335018961 instance=ExtResource("6_bix7t")]
 offset_left = 12.0
-offset_top = 27.0
+offset_top = 48.0
 offset_right = 271.0
-offset_bottom = 38.0
+offset_bottom = 58.0
+
+[node name="ManaBar" parent="CanvasLayer" unique_id=1270972562 instance=ExtResource("6_7ex5l")]
+offset_left = 12.0
+offset_top = 29.0
+offset_right = 271.0
+offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1853089986]
 offset_left = 13.0

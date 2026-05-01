@@ -14,20 +14,24 @@ var speed: int = ALIVE_SPEED
 var direction: Vector2
 var mana: int = 0
 var max_mana: int = 100
+var health: int = 100
 var is_dashing: bool = false
 var is_walking: bool = false
 var is_transitioning: bool = false  
+
 @onready var dash_timer: Timer = $DashTimer
 @onready var mana_timer: Timer = $ManaTimer
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
+@onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 
 func _ready():
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()
 	mana_bar.init_mana(mana)
+	health_bar.init_health(health)
 
 func _physics_process(_delta: float) -> void:
 	if is_transitioning:
@@ -105,6 +109,15 @@ func _on_mana_timer_timeout():
 		
 		if mana <= 0:
 			switch_state()
+
+func take_damage(amount: int):
+	health -= amount
+	health_bar._set_health(health)
+	if health <= 0:
+		die()
+
+func die():
+	queue_free()
 
 func start_dash():
 	is_dashing = true

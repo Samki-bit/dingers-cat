@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jtf8nipi6mxo"
-path="res://.godot/imported/CatsBlack16x16Tile - Edited.png-af5f15dffe8b076ad39af561c622d9f4.ctex"
+uid="uid://lijy4cmwyx0d"
+path="res://.godot/imported/skeleton2_v2_2.png-f1d692704e4acd1ab3a1503cb25b2cac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CatsBlack16x16Tile - Edited.png"
-dest_files=["res://.godot/imported/CatsBlack16x16Tile - Edited.png-af5f15dffe8b076ad39af561c622d9f4.ctex"]
+source_file="res://assets/skeleton2_v2_2.png"
+dest_files=["res://.godot/imported/skeleton2_v2_2.png-f1d692704e4acd1ab3a1503cb25b2cac.ctex"]
 
 [params]
 
