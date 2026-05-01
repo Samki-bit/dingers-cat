@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://blajvul1q3a60"]
+
+[ext_resource type="Script" uid="uid://gimdycb4ongp" path="res://scripts/mana_bar.gd" id="1_ygqsy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc0um"]
+bg_color = Color(0.5254596, 0.61191046, 0.69411045, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygqsy"]
+bg_color = Color(0.13416657, 0.634403, 0.93945295, 1)
+
+[node name="ManaBar" type="ProgressBar" unique_id=335018961]
+offset_right = 240.0
+offset_bottom = 4.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yc0um")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ygqsy")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_ygqsy")

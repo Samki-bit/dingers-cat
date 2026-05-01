@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://j41ig6itelou" path="res://assets/real_cat.png" id="3_mutn8"]
 [ext_resource type="Texture2D" uid="uid://ceuvcmed5no0m" path="res://assets/dead_cat.png" id="4_fgi2k"]
 [ext_resource type="Texture2D" uid="uid://bmv22u7x6ibm0" path="res://assets/dead_cat_2.png" id="5_f8hpl"]
+[ext_resource type="PackedScene" uid="uid://blajvul1q3a60" path="res://scenes/character/mana_bar.tscn" id="6_7ex5l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pheb"]
 atlas = ExtResource("3_mutn8")
@@ -378,9 +379,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvcjf"]
-size = Vector2(7.5, 4.75)
+size = Vector2(10, 5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=215475587]
+collision_layer = 16
+collision_mask = 3
 script = ExtResource("1_cuyo6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2123965110]
@@ -388,12 +391,31 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_bix7t")
 animation = &"dead_walk_sideways"
 autoplay = "alive_idle"
+frame_progress = 0.75313437
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619106432]
-position = Vector2(-0.75, -0.375)
+position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_rvcjf")
 
 [node name="DashTimer" type="Timer" parent="." unique_id=1022974181]
 wait_time = 0.15
 
+[node name="ManaTimer" type="Timer" parent="." unique_id=102094456]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1517945950]
+
+[node name="ManaBar" parent="CanvasLayer" unique_id=335018961 instance=ExtResource("6_7ex5l")]
+offset_left = 12.0
+offset_top = 27.0
+offset_right = 271.0
+offset_bottom = 38.0
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1853089986]
+offset_left = 13.0
+offset_top = 5.0
+offset_right = 57.0
+offset_bottom = 28.0
+text = "Kibble"
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="ManaTimer" to="." method="_on_mana_timer_timeout"]
