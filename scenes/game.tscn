@@ -135,6 +135,7 @@ tile_map_data = PackedByteArray("AAD8//z/AAAAAAQAAAD8//3/AAAAAAEAAAD8//7/AAAAAAI
 tile_set = SubResource("TileSet_lbhrr")
 
 [node name="CharacterBody2D" parent="." unique_id=215475587 instance=ExtResource("1_uwrxv")]
+position = Vector2(-28, 65)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1275248586]
 position = Vector2(130, -15)
