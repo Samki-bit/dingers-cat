@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c520t6idg6b4h"
-path="res://.godot/imported/Pet_Kibble_Bags.png-761b1b672d4db65abd9aff8ea359bb4e.ctex"
+uid="uid://2cvqau0iejw2"
+path="res://.godot/imported/Itch release tileset base 01.png-b0eb7f146c790b9adaa09c692076a304.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/collectables/Pet_Kibble_Bags.png"
-dest_files=["res://.godot/imported/Pet_Kibble_Bags.png-761b1b672d4db65abd9aff8ea359bb4e.ctex"]
+source_file="res://assets/Itch release tileset base 01.png"
+dest_files=["res://.godot/imported/Itch release tileset base 01.png-b0eb7f146c790b9adaa09c692076a304.ctex"]
 
 [params]
 

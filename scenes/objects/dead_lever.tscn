@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://df7nurgdku3pf"]
+
+[ext_resource type="Script" uid="uid://dphhsdbqgjlvq" path="res://scripts/dead_lever.gd" id="1_6rtun"]
+[ext_resource type="Texture2D" uid="uid://dec3f66wxdr1j" path="res://assets/dead_lever.png" id="1_dinoe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_donkj"]
+size = Vector2(20, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rtun"]
+atlas = ExtResource("1_dinoe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1tei"]
+atlas = ExtResource("1_dinoe")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmrv1"]
+atlas = ExtResource("1_dinoe")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0i6bd"]
+atlas = ExtResource("1_dinoe")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4j5xr"]
+atlas = ExtResource("1_dinoe")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8is8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rtun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1tei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmrv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0i6bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4j5xr")
+}],
+"loop": false,
+"name": &"pulled",
+"speed": 10.0
+}]
+
+[node name="DeadLever" type="Area2D" unique_id=162782341]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_6rtun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1391853959]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_donkj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1605351212]
+sprite_frames = SubResource("SpriteFrames_x8is8")
+animation = &"pulled"
+
+[node name="Label" type="Label" parent="." unique_id=595604202]
+offset_left = -52.0
+offset_top = -24.0
+offset_right = -13.0
+offset_bottom = -10.0
+theme_override_font_sizes/font_size = 10
+text = "Interact"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

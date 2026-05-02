@@ -12,7 +12,7 @@ const DEAD_SPEED: int = 70
 var player_state = PlayerState.ALIVE
 var speed: int = ALIVE_SPEED
 var direction: Vector2
-var mana: int = 0
+var mana: int = 50
 var max_mana: int = 100
 var health: int = 100
 var is_dashing: bool = false
@@ -27,6 +27,8 @@ var is_attacking: bool = false
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
 @onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
+
+signal state_changed
 
 func _ready():
 	mana_timer.wait_time = 1.0
@@ -96,7 +98,7 @@ func handle_combat():
 
 func handle_state_animaiton(state):
 	if is_attacking:
-		return  # don't override attack animation
+		return 
 	animation.flip_v = direction.y < 0
 	if direction.x != 0:
 		animation.flip_h = direction.x < 0
@@ -154,10 +156,16 @@ func _on_dash_timer_timeout():
 
 func enter_dead_state():
 	speed = DEAD_SPEED
+	state_changed.emit()
+	set_collision_mask_value(1, false) 
+	set_collision_mask_value(6, true) 
 	set_collision_mask_value(2, false)
 
 func enter_real_state():
 	speed = ALIVE_SPEED
+	state_changed.emit()
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(6, false) 
 	set_collision_mask_value(2, true)
 
 func _on_kibble_collected() -> void:
