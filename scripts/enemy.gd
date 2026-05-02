@@ -5,10 +5,10 @@ extends CharacterBody2D
 @onready var shoot_timer: Timer = $ShootTimer
 
 var target: Node2D = null
-
+var health: int = 10
 func _ready():
 	shoot_timer.wait_time = 2.0
-	shoot_timer.one_shot = false  
+	shoot_timer.one_shot = false
 	shoot_timer.timeout.connect(_on_shoot_timer_timeout)
 
 func _physics_process(_delta: float) -> void:
@@ -43,3 +43,23 @@ func face_target(target_position: Vector2):
 	var dir = global_position.direction_to(target_position)
 	if abs(dir.x) >= abs(dir.y):
 		sprite.flip_h = dir.x < 0
+
+func take_damage(amount: int = 1):
+	health -= amount
+	print("enemy_health", health)
+	sprite.modulate = Color.RED
+	get_tree().create_timer(0.1).timeout.connect(func(): sprite.modulate = Color.WHITE)
+	shake()
+	if health <= 0:
+		queue_free()
+
+func shake():
+	var original_pos = position
+	var shake_amount = 3.0
+	var shake_speed = 0.05
+	
+	for i in range(6):
+		position = original_pos + Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount))
+		await get_tree().create_timer(shake_speed).timeout
+	
+	position = original_pos 

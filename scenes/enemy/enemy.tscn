@@ -45,11 +45,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wtq4b"]
 radius = 5.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl05p"]
+size = Vector2(15, 14)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gl05p"]
 radius = 59.03389
 
 [node name="Enemy" type="CharacterBody2D" unique_id=623823556]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_gl05p")
 
@@ -62,6 +65,14 @@ frame_progress = 0.1487635
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1492401414]
 shape = SubResource("CircleShape2D_wtq4b")
 
+[node name="HurtBox" type="Area2D" parent="." unique_id=1755210081]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=752211658]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_gl05p")
+
 [node name="AttackZone" type="Area2D" parent="." unique_id=508287807]
 collision_layer = 0
 collision_mask = 16
@@ -71,5 +82,6 @@ shape = SubResource("CircleShape2D_gl05p")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=453997097]
 
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
 [connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]

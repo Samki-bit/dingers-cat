@@ -8,6 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://blajvul1q3a60" path="res://scenes/character/mana_bar.tscn" id="6_7ex5l"]
 [ext_resource type="PackedScene" uid="uid://bo345g3l6vhxq" path="res://scenes/character/health_bar.tscn" id="6_bix7t"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8rq"]
+atlas = ExtResource("3_mutn8")
+region = Rect2(32, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8quom"]
+atlas = ExtResource("3_mutn8")
+region = Rect2(48, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8yjg"]
+atlas = ExtResource("3_mutn8")
+region = Rect2(0, 288, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1pheb"]
 atlas = ExtResource("3_mutn8")
 region = Rect2(16, 96, 16, 16)
@@ -87,6 +99,22 @@ region = Rect2(32, 256, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_f6x4b"]
 atlas = ExtResource("3_mutn8")
 region = Rect2(48, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ip4"]
+atlas = ExtResource("4_fgi2k")
+region = Rect2(0, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1gjr"]
+atlas = ExtResource("4_fgi2k")
+region = Rect2(16, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p612h"]
+atlas = ExtResource("4_fgi2k")
+region = Rect2(32, 288, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbx1n"]
+atlas = ExtResource("4_fgi2k")
+region = Rect2(48, 288, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2f6da"]
 atlas = ExtResource("4_fgi2k")
@@ -188,6 +216,20 @@ region = Rect2(48, 512, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8quom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8yjg")
+}],
+"loop": false,
+"name": &"alive_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_1pheb")
 }, {
 "duration": 1.0,
@@ -269,6 +311,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"alive_walk_updown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d1ip4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1gjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p612h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbx1n")
+}],
+"loop": false,
+"name": &"dead_attack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -382,6 +441,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvcjf"]
 size = Vector2(10, 5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bix7t"]
+size = Vector2(15, 7)
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=215475587]
 collision_layer = 16
 collision_mask = 131
@@ -390,9 +452,8 @@ script = ExtResource("1_cuyo6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2123965110]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_bix7t")
-animation = &"dead_walk_sideways"
+animation = &"alive_attack"
 autoplay = "alive_idle"
-frame_progress = 0.75313437
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619106432]
 position = Vector2(-1, -0.5)
@@ -424,5 +485,14 @@ offset_right = 57.0
 offset_bottom = 28.0
 text = "Kibble"
 
+[node name="HitBox" type="Area2D" parent="." unique_id=761832136]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1193163600]
+position = Vector2(-0.5, -1.5)
+shape = SubResource("RectangleShape2D_bix7t")
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="ManaTimer" to="." method="_on_mana_timer_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
