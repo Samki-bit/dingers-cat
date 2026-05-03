@@ -12,7 +12,7 @@ const DEAD_SPEED: int = 70
 var player_state = PlayerState.ALIVE
 var speed: int = ALIVE_SPEED
 var direction: Vector2
-var mana: int = 50
+var mana: int = 0
 var max_mana: int = 100
 var health: int = 100
 var is_dashing: bool = false
@@ -36,6 +36,18 @@ func _ready():
 	mana_timer.start()
 	mana_bar.init_mana(mana)
 	health_bar.init_health(health)
+	animation.animation_finished.connect(_on_animation_finished)  
+
+func _on_animation_finished():
+	if not is_transitioning:
+		return
+	is_transitioning = false
+	if player_state == PlayerState.ALIVE and mana > 0:
+		player_state = PlayerState.DEAD
+		enter_dead_state()
+	else:
+		player_state = PlayerState.ALIVE
+		enter_real_state()
 
 func _physics_process(_delta: float) -> void:
 	handle_movement()
@@ -45,13 +57,16 @@ func _physics_process(_delta: float) -> void:
 
 func handle_movement():
 	if is_transitioning:
-			velocity = Vector2.ZERO
-			move_and_slide()
+		velocity = Vector2.ZERO
+		return 
 
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		start_dash()
 	if Input.is_action_just_pressed("switch"):
-		switch_state()
+		if player_state == PlayerState.ALIVE and mana <= 0:
+			print("not enough mana!")
+		else:
+			switch_state()
 	
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if is_dashing:
@@ -63,16 +78,7 @@ func handle_movement():
 
 func handle_animation() -> void:
 	if is_transitioning:
-		if animation.animation == "transition_to_dead" or animation.animation == "transition_to_alive":
-			if animation.frame == animation.sprite_frames.get_frame_count(animation.animation) - 1:
-				is_transitioning = false
-				if player_state == PlayerState.ALIVE and mana > 0:
-					player_state = PlayerState.DEAD
-					enter_dead_state()
-				else:
-					player_state = PlayerState.ALIVE
-					enter_real_state()
-		return 
+		return  
 	if player_state == PlayerState.ALIVE:
 		handle_state_animaiton("alive")
 	else:
@@ -80,17 +86,14 @@ func handle_animation() -> void:
 
 func handle_combat():
 	hit_box.monitoring = false
-	if Input.is_action_just_pressed("jump") and not is_attacking:
+	if Input.is_action_just_pressed("jump") and not is_attacking and not is_transitioning:
 		is_attacking = true
 		hit_box.monitoring = true
-		
+		animation.flip_v = direction.y < 0
 		if player_state == PlayerState.ALIVE:
-			animation.flip_v = direction.y < 0
 			animation.play("alive_attack")
 		else:
-			animation.flip_v = direction.y < 0
 			animation.play("dead_attack")
-
 		get_tree().create_timer(0.1).timeout.connect(func():
 			is_attacking = false
 			hit_box.monitoring = false
@@ -98,7 +101,7 @@ func handle_combat():
 
 func handle_state_animaiton(state):
 	if is_attacking:
-		return 
+		return
 	animation.flip_v = direction.y < 0
 	if direction.x != 0:
 		animation.flip_h = direction.x < 0
@@ -119,10 +122,6 @@ func handle_state_animaiton(state):
 func switch_state():
 	if is_transitioning:
 		return
-	if player_state == PlayerState.ALIVE and mana <= 0:
-		print("not enough mana!")
-		is_transitioning = false
-		return
 	is_transitioning = true
 	if player_state == PlayerState.ALIVE:
 		animation.play("transition_to_dead")
@@ -131,10 +130,9 @@ func switch_state():
 
 func _on_mana_timer_timeout():
 	if player_state == PlayerState.DEAD:
-		mana -= 1
-		mana = max(mana, 0)  
+		mana -= 5
+		mana = max(mana, 0)
 		mana_bar._set_mana(mana)
-		
 		if mana <= 0:
 			switch_state()
 
@@ -157,25 +155,25 @@ func _on_dash_timer_timeout():
 func enter_dead_state():
 	speed = DEAD_SPEED
 	state_changed.emit()
-	set_collision_mask_value(1, false) 
-	set_collision_mask_value(6, true) 
+	set_collision_mask_value(1, false)
+	set_collision_mask_value(6, true)
 	set_collision_mask_value(2, false)
 
 func enter_real_state():
 	speed = ALIVE_SPEED
 	state_changed.emit()
 	set_collision_mask_value(1, true)
-	set_collision_mask_value(6, false) 
+	set_collision_mask_value(6, false)
 	set_collision_mask_value(2, true)
 
-func _on_kibble_collected() -> void:
+func collect_kibble() -> void:
 	if mana <= max_mana:
 		mana += 10
 		mana_bar._set_mana(mana)
 		print("mana:", mana)
 	else:
 		print("max mana")
-	
+
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage()

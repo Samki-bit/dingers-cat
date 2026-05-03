@@ -444,7 +444,7 @@ size = Vector2(10, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bix7t"]
 size = Vector2(15, 7)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=215475587]
+[node name="character" type="CharacterBody2D" unique_id=215475587]
 collision_layer = 16
 collision_mask = 131
 script = ExtResource("1_cuyo6")
@@ -465,7 +465,6 @@ wait_time = 0.15
 [node name="ManaTimer" type="Timer" parent="." unique_id=102094456]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1517945950]
-visible = false
 
 [node name="HealthBar" parent="CanvasLayer" unique_id=335018961 instance=ExtResource("6_bix7t")]
 offset_left = 12.0
