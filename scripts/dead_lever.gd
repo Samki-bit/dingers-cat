@@ -27,6 +27,7 @@ func pull():
 func _on_body_entered(body: Node2D) -> void:
 	if not pulled:
 		label.visible = true
+		print("hehe")
 
 
 func _on_body_exited(body: Node2D) -> void:
