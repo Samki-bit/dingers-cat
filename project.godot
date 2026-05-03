@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="dinger's cat"
+run/main_scene="uid://wmdvs3ur5wlk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
