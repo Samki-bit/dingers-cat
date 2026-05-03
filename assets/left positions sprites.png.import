@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmv22u7x6ibm0"
-path="res://.godot/imported/dead_cat_2.png-d568563eda8e1835fa052080e8b14ba2.ctex"
+uid="uid://dffw7fyrwob5m"
+path="res://.godot/imported/left positions sprites.png-dd32a8816c2e8c73847f122c55f08a5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dead_cat_2.png"
-dest_files=["res://.godot/imported/dead_cat_2.png-d568563eda8e1835fa052080e8b14ba2.ctex"]
+source_file="res://assets/left positions sprites.png"
+dest_files=["res://.godot/imported/left positions sprites.png-dd32a8816c2e8c73847f122c55f08a5c.ctex"]
 
 [params]
 

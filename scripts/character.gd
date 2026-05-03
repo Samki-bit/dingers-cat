@@ -28,15 +28,23 @@ var is_attacking: bool = false
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
 @onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 
+var last_direction: String
 signal state_changed
 
 func _ready():
+	animation.play("alive_sleep")
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()
 	mana_bar.init_mana(mana)
 	health_bar.init_health(health)
 	animation.animation_finished.connect(_on_animation_finished)  
+
+func _get_direction_suffic(dir: Vector2) -> String:
+	if abs(dir.x) > abs(dir.y):
+		return "left" if dir.x < 0 else "right"
+	else:
+		return "up" if dir.y < 0 else "down"
 
 func _on_animation_finished():
 	if not is_transitioning:
@@ -51,8 +59,8 @@ func _on_animation_finished():
 
 func _physics_process(_delta: float) -> void:
 	handle_movement()
-	handle_combat()
 	handle_animation()
+	handle_combat()
 	move_and_slide()
 
 func handle_movement():
@@ -86,14 +94,24 @@ func handle_animation() -> void:
 
 func handle_combat():
 	hit_box.monitoring = false
+	var dir
 	if Input.is_action_just_pressed("jump") and not is_attacking and not is_transitioning:
 		is_attacking = true
 		hit_box.monitoring = true
-		animation.flip_v = direction.y < 0
-		if player_state == PlayerState.ALIVE:
-			animation.play("alive_attack")
+		#animation.flip_v = direction.y < 0
+		#if player_state == PlayerState.ALIVE:
+			#animation.play("alive_attack")
+		#else:
+			#animation.play("dead_attack")
+		if direction != Vector2.ZERO:
+			dir = _get_direction_suffic(direction)
+			last_direction = dir
 		else:
-			animation.play("dead_attack")
+			dir = last_direction
+		if player_state == PlayerState.ALIVE:
+			animation.play("alive_attack_" + dir)
+		else:
+			animation.play("dead_attack_" + dir)
 		get_tree().create_timer(0.1).timeout.connect(func():
 			is_attacking = false
 			hit_box.monitoring = false
@@ -102,22 +120,35 @@ func handle_combat():
 func handle_state_animaiton(state):
 	if is_attacking:
 		return
-	animation.flip_v = direction.y < 0
-	if direction.x != 0:
-		animation.flip_h = direction.x < 0
-	if direction.y != 0:
-		animation.flip_v = direction.y > 0
-	if is_dashing:
-		if direction == Vector2.LEFT or direction == Vector2.RIGHT:
-			animation.play(state + "_dash_sideways")
-		else:
-			animation.play(state + "_dash_updown")
-	elif direction == Vector2.ZERO:
-		animation.play(state + "_idle")
-	elif direction == Vector2.LEFT or direction == Vector2.RIGHT:
-		animation.play(state + "_walk_sideways")
+	var dir
+	if direction != Vector2.ZERO:
+		dir = _get_direction_suffic(direction)
+		last_direction = dir
 	else:
-		animation.play(state + "_walk_updown")
+		dir = last_direction
+	if is_dashing:
+		animation.play(state + "_dash_" + dir)
+	elif direction==Vector2.ZERO:
+		animation.play(state + "_idle_" + dir)
+	else:
+		animation.play(state + "_walk_" + dir)
+		
+	#animation.flip_v = direction.y < 0
+	#if direction.x != 0:
+		#animation.flip_h = direction.x < 0
+	#if direction.y != 0:
+		#animation.flip_v = direction.y > 0
+	#if is_dashing:
+		#if direction == Vector2.LEFT or direction == Vector2.RIGHT:
+			#animation.play(state + "_dash_sideways")
+		#else:
+			#animation.play(state + "_dash_updown")
+	#elif direction == Vector2.ZERO:
+		#animation.play(state + "_idle")
+	#elif direction == Vector2.LEFT or direction == Vector2.RIGHT:
+		#animation.play(state + "_walk_sideways")
+	#else:
+		#animation.play(state + "_walk_updown")
 
 func switch_state():
 	if is_transitioning:

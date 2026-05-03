@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceuvcmed5no0m"
-path="res://.godot/imported/dead_cat.png-d1ff080ef6dc2b4553dbd5c75bd8af3c.ctex"
+path="res://.godot/imported/dead_cat.png-676dede76754be45792fc89353afa2bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dead_cat.png"
-dest_files=["res://.godot/imported/dead_cat.png-d1ff080ef6dc2b4553dbd5c75bd8af3c.ctex"]
+source_file="res://assets/old cat assets/dead_cat.png"
+dest_files=["res://.godot/imported/dead_cat.png-676dede76754be45792fc89353afa2bd.ctex"]
 
 [params]
 
