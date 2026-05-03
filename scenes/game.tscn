@@ -156,6 +156,3 @@ position = Vector2(-37, -26)
 
 [node name="Enemy" parent="." unique_id=623823556 instance=ExtResource("3_lbhrr")]
 position = Vector2(162, -50)
-
-[connection signal="kibble_collected" from="Kibble" to="CharacterBody2D" method="_on_kibble_collected"]
-[connection signal="kibble_collected" from="Kibble2" to="CharacterBody2D" method="_on_kibble_collected"]
