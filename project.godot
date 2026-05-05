@@ -64,7 +64,8 @@ interact={
 
 [layer_names]
 
-2d_physics/layer_1="Real Environment"
+2d_physics/layer_1="Alive World"
+2d_navigation/layer_1="Walls"
 2d_physics/layer_2="Passable"
 2d_physics/layer_3="Collectibles"
 2d_physics/layer_4="Enemies"
