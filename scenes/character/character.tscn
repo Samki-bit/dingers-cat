@@ -1260,6 +1260,7 @@ wait_time = 0.15
 [node name="ManaTimer" type="Timer" parent="." unique_id=102094456]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1517945950]
+visible = false
 
 [node name="HealthBar" parent="CanvasLayer" unique_id=335018961 instance=ExtResource("6_bix7t")]
 offset_left = 12.0

@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://cewxl84ca1lug"]
+[gd_scene format=4 uid="uid://bt0qdico3gci0"]
 
-[ext_resource type="Script" uid="uid://b31catp8l6rje" path="res://scripts/level2.gd" id="1_3f15j"]
+[ext_resource type="Script" path="res://scripts/level2.gd" id="1_3f15j"]
 [ext_resource type="Texture2D" uid="uid://bg5kxn8o3gn6y" path="res://assets/Itch release tileset base 01.png" id="1_ejalt"]
 [ext_resource type="PackedScene" uid="uid://ch1dft75lqcm6" path="res://scenes/enemy/enemy_door.tscn" id="2_b0ibx"]
 [ext_resource type="PackedScene" uid="uid://ds0o5rbpdxchq" path="res://scenes/character/character.tscn" id="2_dqr1q"]
