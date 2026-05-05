@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b76ey4w6gyagy"]
+
+[ext_resource type="Script" uid="uid://c8s1mpfj5nrtv" path="res://scripts/pressure_plate.gd" id="1_elfid"]
+[ext_resource type="Texture2D" uid="uid://broivrkfig0fg" path="res://assets/pressure_plate.png" id="1_mayf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaf0c"]
+atlas = ExtResource("1_mayf5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17kam"]
+atlas = ExtResource("1_mayf5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef2lj"]
+atlas = ExtResource("1_mayf5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elfid"]
+atlas = ExtResource("1_mayf5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j1l4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaf0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17kam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef2lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elfid")
+}],
+"loop": false,
+"name": &"triggered",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7tvr"]
+radius = 3.0
+
+[node name="PressurePlate" type="Area2D" unique_id=1562089010]
+collision_mask = 16
+script = ExtResource("1_elfid")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=190279300]
+scale = Vector2(1.3125, 1.3125)
+sprite_frames = SubResource("SpriteFrames_6j1l4")
+animation = &"triggered"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1652323168]
+shape = SubResource("CircleShape2D_f7tvr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://chu068yttdrxg"]
+
+[ext_resource type="Script" uid="uid://b76iu8ul0q53s" path="res://scripts/special_enemy.gd" id="1_8yk1m"]
+[ext_resource type="Texture2D" uid="uid://bybax8jrr5oci" path="res://assets/skeleton2_v2_1.png" id="2_mkn6a"]
+[ext_resource type="Texture2D" uid="uid://lijy4cmwyx0d" path="res://assets/skeleton2_v2_2.png" id="3_ovb3s"]
+[ext_resource type="Texture2D" uid="uid://d07bmnyjtc2hn" path="res://assets/skeleton2_v2_3.png" id="4_cplfw"]
+[ext_resource type="Texture2D" uid="uid://bgtbb8hurf1hl" path="res://assets/skeleton2_v2_4.png" id="5_fexid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("2_mkn6a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
+atlas = ExtResource("3_ovb3s")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
+atlas = ExtResource("4_cplfw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
+atlas = ExtResource("5_fexid")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_otmr2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md484")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipns3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8i8w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtq4b"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl05p"]
+size = Vector2(15, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gl05p"]
+radius = 94.0
+
+[node name="SpecialEnemy" type="CharacterBody2D" unique_id=623823556]
+collision_layer = 8
+script = ExtResource("1_8yk1m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1988664331]
+sprite_frames = SubResource("SpriteFrames_otmr2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.1487635
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1492401414]
+shape = SubResource("CircleShape2D_wtq4b")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1755210081]
+collision_layer = 8
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=752211658]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_gl05p")
+
+[node name="AttackZone" type="Area2D" parent="." unique_id=508287807]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackZone" unique_id=185354259]
+shape = SubResource("CircleShape2D_gl05p")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=453997097]
+
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]
+[connection signal="body_exited" from="AttackZone" to="." method="_on_attack_zone_body_exited"]

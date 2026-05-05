@@ -12,7 +12,7 @@ const DEAD_SPEED: int = 70
 var player_state = PlayerState.ALIVE
 var speed: int = ALIVE_SPEED
 var direction: Vector2
-var mana: int = 0
+var mana: int = 100
 var max_mana: int = 100
 var health: int = 100
 var is_dashing: bool = false
