@@ -32,7 +32,6 @@ var last_direction: String
 signal state_changed
 
 func _ready():
-	animation.play("alive_sleep")
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()
