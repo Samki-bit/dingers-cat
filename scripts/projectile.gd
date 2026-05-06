@@ -15,9 +15,13 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	velocity = dir * SPEED
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision:
+			queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage(10)
 		queue_free()
-	
