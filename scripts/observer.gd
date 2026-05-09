@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var starting_countdown := 90.0
+@export var starting_countdown := 30.0
 @export var countdown_decrease := 15.0
 @export var minimum_countdown := 30.0
 
