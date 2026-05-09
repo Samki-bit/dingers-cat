@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 GameState="*uid://85tilkbl1v7u"
 
+[global_group]
+
+character=""
+
 [input]
 
 jump={

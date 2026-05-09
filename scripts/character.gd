@@ -19,6 +19,7 @@ var is_dashing: bool = false
 var is_walking: bool = false
 var is_transitioning: bool = false  
 var is_attacking: bool = false
+var can_switch_mode := true
 
 @onready var hit_box: Area2D = $HitBox
 @onready var dash_timer: Timer = $DashTimer
@@ -32,6 +33,8 @@ var last_direction: String
 signal state_changed
 
 func _ready():
+	print("PLAYER READY")
+	print(get_groups())
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()
@@ -69,7 +72,7 @@ func handle_movement():
 
 	if Input.is_action_just_pressed("dash") and not is_dashing:
 		start_dash()
-	if Input.is_action_just_pressed("switch"):
+	if Input.is_action_just_pressed("switch") and can_switch_mode:
 		if player_state == PlayerState.ALIVE and mana <= 0:
 			print("not enough mana!")
 		else:
