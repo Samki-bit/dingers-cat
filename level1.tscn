@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://13dbwhusnua1" path="res://scenes/enemy/enemy.tscn" id="4_2r1tl"]
 [ext_resource type="Texture2D" uid="uid://bg5kxn8o3gn6y" path="res://assets/Itch release tileset base 01.png" id="6_8a7m2"]
 [ext_resource type="PackedScene" uid="uid://chu068yttdrxg" path="res://scenes/enemy/special_enemy.tscn" id="6_plydf"]
-[ext_resource type="PackedScene" uid="uid://b1u01x0d08yul" path="res://scenes/observer.tscn" id="10_5ntmo"]
+[ext_resource type="Script" uid="uid://cittbn2k7adki" path="res://scripts/level_manager.gd" id="10_5ntmo"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_1iref"]
 tile_data = PackedInt32Array(0, 1703937, 1342177284, 65536, 1703937, 4, 131072, 1703937, 536870916, 196608, 1703937, 4, 1, 1703937, 1073741828, 65537, 1835009, 131076, 131073, 1835009, 196612, 196609, 1703937, 268435460, 2, 1835009, 262148, 65538, 1835009, 65540, 131074, 1835009, 262148, 196610, 1835009, 65540, 3, 1835009, 196612, 65539, 1835009, 131076, 131075, 1835009, 196612, 196611, 1835009, 131076)
@@ -4154,12 +4154,5 @@ zoom = Vector2(2, 2)
 [node name="CharacterBody2D" parent="." unique_id=215475587 instance=ExtResource("2_4tcl0")]
 position = Vector2(48, 49)
 
-[node name="Observer" parent="." unique_id=1736577623 node_paths=PackedStringArray("countdown_label") instance=ExtResource("10_5ntmo")]
-countdown_label = NodePath("../CountdownLabel")
-
-[node name="CountdownLabel" type="Label" parent="." unique_id=861243033]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "
-"
-horizontal_alignment = 1
+[node name="LevelManager" type="Node" parent="." unique_id=1473280562]
+script = ExtResource("10_5ntmo")
