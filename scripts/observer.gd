@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var starting_countdown := 30.0
+@export var starting_countdown := 15.0
 @export var countdown_decrease := 15.0
 @export var minimum_countdown := 30.0
 
@@ -36,6 +36,7 @@ func _on_timer_timeout():
 
 func arrive():
 	# place observer above screen first
+	warning_active = false
 	$Sprite2D.position.y = -300
 
 	visible = true
@@ -73,8 +74,6 @@ func leave():
 		player.can_switch_mode = true
 
 	await tween.finished
-
-	warning_active = false
 
 	visible = false
 
