@@ -20,10 +20,13 @@ func _physics_process(_delta: float) -> void:
 		if target.player_state == target.PlayerState.ALIVE:
 			face_target(target.global_position)
 			chase_target(target.global_position)
+			sprite.play("walk")
 		else:
-			velocity = Vector2.ZERO  # stop chasing in dead state
+			velocity = Vector2.ZERO
+			sprite.play("idle") # stop chasing in dead state
 	else:
 		velocity = Vector2.ZERO
+		sprite.play("idle")
 	move_and_slide()
 
 func chase_target(target_position: Vector2):
@@ -37,6 +40,7 @@ func shoot(target_position: Vector2):
 	bullet.spawn_position = global_position
 	bullet.spawn_rotation = dir.angle()
 	get_parent().add_child(bullet)
+	sprite.play("throw")
 
 func _on_shoot_timer_timeout():
 	if target and is_instance_valid(target):
@@ -65,7 +69,7 @@ func face_target(target_position: Vector2):
 func take_damage(amount: int = 1):
 	health -= amount
 	print("enemy_health: ", health)
-	sprite.modulate = Color.RED
+	sprite.modulate = Color.WHITE * 5.0
 	get_tree().create_timer(0.1).timeout.connect(func(): sprite.modulate = Color.WHITE)
 	shake()
 	if health <= 0:

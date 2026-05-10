@@ -1,7 +1,43 @@
 [gd_scene format=3 uid="uid://dafjtl1dtjyvk"]
 
-[ext_resource type="Texture2D" uid="uid://dy2xdosh7fxa7" path="res://assets/Dungeon_Tileset.png" id="1_gopfk"]
 [ext_resource type="Script" uid="uid://b3o5q6i8jwjh5" path="res://scripts/projectile.gd" id="1_r7k8t"]
+[ext_resource type="Texture2D" uid="uid://csx0oue4kkesh" path="res://assets/Pebble/Pebble_Idle.png" id="2_r7k8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68ai3"]
+atlas = ExtResource("2_r7k8t")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooidt"]
+atlas = ExtResource("2_r7k8t")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57u4u"]
+atlas = ExtResource("2_r7k8t")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6n5q"]
+atlas = ExtResource("2_r7k8t")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gopfk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68ai3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooidt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57u4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6n5q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7k8t"]
 radius = 5.3851647
@@ -14,12 +50,11 @@ collision_layer = 128
 collision_mask = 19
 script = ExtResource("1_r7k8t")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2100410166]
-position = Vector2(0, 2)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=393614842]
+position = Vector2(0, -1)
 scale = Vector2(-0.93660456, -0.8858786)
-texture = ExtResource("1_gopfk")
-region_enabled = true
-region_rect = Rect2(128.11278, 95.13524, 15.294281, 16.250168)
+sprite_frames = SubResource("SpriteFrames_gopfk")
+frame_progress = 0.23922066
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=796498482]
 shape = SubResource("CircleShape2D_r7k8t")

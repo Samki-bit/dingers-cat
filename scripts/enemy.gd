@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @onready var projectile = preload("res://scenes/enemy/projectile.tscn")
 @onready var kibble = preload("res://scenes/objects/kibble.tscn")
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var target: Node2D = null
 var health: int = 10
@@ -24,6 +24,7 @@ func shoot(target_position: Vector2):
 	bullet.spawn_position = global_position
 	bullet.spawn_rotation = dir.angle()
 	get_parent().add_child(bullet)
+	sprite.play("throw")
 
 func _on_shoot_timer_timeout():
 	if target.player_state == target.PlayerState.ALIVE:
@@ -48,7 +49,7 @@ func face_target(target_position: Vector2):
 func take_damage(amount: int = 1):
 	health -= amount
 	print("enemy_health: ", health)
-	sprite.modulate = Color.RED
+	sprite.modulate = Color.WHITE * 5.0
 	get_tree().create_timer(0.1).timeout.connect(func(): sprite.modulate = Color.WHITE)
 	shake()
 	if health <= 0:
