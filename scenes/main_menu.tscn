@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://b06ssygsucx0o" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://kn7wex50gpmm" path="res://assets/Symtext.ttf" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bblfqemneeg5f" path="res://assets/logo.png" id="2_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://dn1vabbqbrltk" path="res://assets/bg_question.png" id="2_wu84c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
+texture = ExtResource("2_wu84c")
+modulate_color = Color(1, 1, 1, 0.38039216)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(0.5921569, 0.60784316, 0.5686275, 0)
@@ -32,6 +37,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bqqt6")
 
+[node name="Panel2" type="Panel" parent="." unique_id=875521364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wu84c")
+
 [node name="Button" type="Button" parent="." unique_id=362214791]
 layout_mode = 1
 anchors_preset = 8
@@ -39,10 +55,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -159.75
-offset_top = 155.5
-offset_right = 159.75
-offset_bottom = 213.5
+offset_left = -174.0
+offset_top = 30.5
+offset_right = 145.5
+offset_bottom = 88.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.8295784, 0.59067345, 0.5454926, 1)
@@ -57,10 +73,10 @@ text = "Start Game"
 
 [node name="Panel" type="Panel" parent="." unique_id=1625281896]
 layout_mode = 0
-offset_left = 746.0
-offset_top = 96.0
-offset_right = 893.7649
-offset_bottom = 243.7649
+offset_left = 759.00006
+offset_top = 112.0
+offset_right = 906.76495
+offset_bottom = 259.7649
 rotation = 0.30971363
 theme_override_styles/panel = SubResource("StyleBoxTexture_bqqt6")
 
@@ -71,10 +87,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -271.0
-offset_top = -71.5
-offset_right = 276.0
-offset_bottom = 36.5
+offset_left = -275.0
+offset_top = -66.5
+offset_right = 272.0
+offset_bottom = 41.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)

@@ -76,6 +76,7 @@ interact={
 2d_physics/layer_5="Player"
 2d_physics/layer_6="Dead Envrionment"
 2d_physics/layer_8="Projectiles"
+2d_physics/layer_9="DeadPlayer"
 
 [physics]
 

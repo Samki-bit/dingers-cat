@@ -188,6 +188,8 @@ func _on_dash_timer_timeout():
 func enter_dead_state():
 	speed = DEAD_SPEED
 	state_changed.emit()
+	set_collision_layer_value(9, true)
+	set_collision_layer_value(5, false)
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(6, true)
 	set_collision_mask_value(2, false)
@@ -195,6 +197,8 @@ func enter_dead_state():
 func enter_real_state():
 	speed = ALIVE_SPEED
 	state_changed.emit()
+	set_collision_layer_value(9, false)
+	set_collision_layer_value(5, true)
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(6, false)
 	set_collision_mask_value(2, true)
