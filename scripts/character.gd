@@ -29,13 +29,13 @@ var can_switch_mode := true
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
 @onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 @onready var hurt_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var died_label: Label = $CanvasLayer/DiedLabel
 
 var last_direction: String
 signal state_changed
 
 func _ready():
-	print("PLAYER READY")
-	print(get_groups())
+	died_label.visible = false
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()
@@ -180,7 +180,10 @@ func take_damage(amount: int):
 		die()
 
 func die():
-	queue_free()
+	died_label.visible = true
+	get_tree().paused = true
+	await get_tree().create_timer(3.0).timeout
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func start_dash():

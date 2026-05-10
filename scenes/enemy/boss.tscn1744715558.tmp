@@ -837,6 +837,22 @@ theme_override_fonts/font = ExtResource("12_8rtgj")
 theme_override_font_sizes/font_size = 20
 text = "Meowxecutioner"
 
+[node name="Thanks" type="Label" parent="CanvasLayer" unique_id=1484439282]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -218.0
+offset_top = 309.0
+offset_right = 187.0
+offset_bottom = 372.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("12_8rtgj")
+theme_override_font_sizes/font_size = 20
+text = "Dinger's Cat can finally go out
+			Thanks for playing"
+horizontal_alignment = 1
+
 [node name="HitBox" type="Area2D" parent="." unique_id=739169855]
 position = Vector2(-3, 1)
 collision_layer = 8

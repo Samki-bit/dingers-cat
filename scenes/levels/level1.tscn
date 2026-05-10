@@ -4155,8 +4155,7 @@ position = Vector2(72, 119)
 position = Vector2(288, 161)
 zoom = Vector2(2, 2)
 
-[node name="Observer" parent="." unique_id=1736577623 node_paths=PackedStringArray("countdown_label") instance=ExtResource("10_5ntmo")]
-countdown_label = NodePath("../Label")
+[node name="Observer" parent="." unique_id=1736577623 instance=ExtResource("10_5ntmo")]
 
 [node name="Portal" parent="." unique_id=1880011364 instance=ExtResource("11_nkeig")]
 position = Vector2(542, 101)
