@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var progress_bar: ProgressBar = $CanvasLayer/ProgressBar
 @onready var hit_box_collision: CollisionShape2D = $HitBox/CollisionShape2D
+@onready var hit_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var direction : Vector2
  
@@ -32,6 +33,7 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
  
 func take_damage(amount: int = 5):
+	hit_audio.play()
 	health -= amount
 	print("enemy_health: ", health)
 	animated_sprite.modulate = Color.WHITE * 5.0

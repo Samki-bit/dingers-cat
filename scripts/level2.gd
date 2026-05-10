@@ -7,6 +7,9 @@ extends Node2D
 @onready var pressure_plate: Area2D = $AliveWorld/PressurePlate
 @onready var door_2: StaticBody2D = $AliveWorld/Door2
 @onready var pressure_plate_2: Area2D = $DeadWorld/PressurePlate2
+@onready var portal: Area2D = $Portal
+
+var next_level: String = "res://scenes/levels/boss_arena.tscn"
 
 func _ready():
 	GameState.reset()
@@ -20,7 +23,7 @@ func _on_player_state_changed():
 	update_world_visibility()
 
 func _on_all_levers_pulled():
-	print("level_completed")
+	portal.open(next_level)
 
 func _on_pressure_plate_triggered():
 	door.open()

@@ -21,4 +21,4 @@ func _on_body_entered(body: Node2D) -> void:
 	sprite.play("close")
 	await sprite.animation_finished
 	print(sprite.animation_finished)
-	get_tree().change_scene_to_file(next_level)
+	Transition.transition_to_next_level(next_level)
