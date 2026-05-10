@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cdfhf3cwl7sbo" path="res://scenes/objects/real_lever.tscn" id="5_x2nqc"]
 [ext_resource type="PackedScene" uid="uid://dbldamirg6qju" path="res://scenes/objects/door.tscn" id="6_2kpvi"]
 [ext_resource type="PackedScene" uid="uid://npfi02adxrqw" path="res://scenes/objects/kibble.tscn" id="7_17msu"]
+[ext_resource type="AudioStream" uid="uid://c7j4mh17xolcv" path="res://assets/audio/Tears of Nostalgia.wav" id="12_8i1lk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqr1q"]
 texture = ExtResource("1_ejalt")
@@ -5813,6 +5814,7 @@ position = Vector2(125, 263)
 [node name="PressurePlate2" parent="DeadWorld" unique_id=1997727854 instance=ExtResource("4_gpxly")]
 position = Vector2(92, 156)
 collision_layer = 32
+collision_mask = 256
 pressure_plate_id = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1750273160]
@@ -5829,7 +5831,7 @@ position = Vector2(-12, 1)
 position = Vector2(238, -153)
 
 [node name="SpecialEnemy" parent="Enemies" unique_id=2121583593 instance=ExtResource("5_81enr")]
-position = Vector2(280, 0)
+position = Vector2(291, 22)
 
 [node name="Character" parent="." unique_id=215475587 instance=ExtResource("2_dqr1q")]
 position = Vector2(30, 87)
@@ -5839,3 +5841,7 @@ position = Vector2(94, 92)
 
 [node name="Kibble2" parent="." unique_id=918234489 instance=ExtResource("7_17msu")]
 position = Vector2(203, 58)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=991847092]
+stream = ExtResource("12_8i1lk")
+autoplay = true

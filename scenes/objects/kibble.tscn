@@ -1,68 +1,38 @@
 [gd_scene format=3 uid="uid://npfi02adxrqw"]
 
 [ext_resource type="Script" uid="uid://l87ynrmfcrrw" path="res://scripts/kibble.gd" id="1_7qc0d"]
-[ext_resource type="Texture2D" uid="uid://du6nxhw0l5vjw" path="res://assets/Pet_Kibble_Bags.png" id="1_k5wo0"]
+[ext_resource type="Texture2D" uid="uid://bg15xefl33yfm" path="res://assets/spritesheet.png" id="2_lnfvk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qc0d"]
-atlas = ExtResource("1_k5wo0")
-region = Rect2(288, 0, 32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5wo0"]
+radius = 3.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rs4u6"]
-atlas = ExtResource("1_k5wo0")
-region = Rect2(288, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6pdsi"]
-atlas = ExtResource("1_k5wo0")
-region = Rect2(288, 64, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v6rla"]
-atlas = ExtResource("1_k5wo0")
-region = Rect2(288, 96, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g8exb"]
-atlas = ExtResource("1_k5wo0")
-region = Rect2(288, 128, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p70ed"]
+atlas = ExtResource("2_lnfvk")
+region = Rect2(288, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fdgxp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7qc0d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rs4u6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6pdsi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v6rla")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g8exb")
+"texture": SubResource("AtlasTexture_p70ed")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k5wo0"]
-radius = 3.0
-
 [node name="Kibble" type="Area2D" unique_id=1346766756]
 collision_layer = 4
-collision_mask = 16
+collision_mask = 272
 script = ExtResource("1_7qc0d")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1511671280]
+shape = SubResource("CircleShape2D_k5wo0")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1660205445]
-position = Vector2(1, -1)
-scale = Vector2(0.44335935, 0.44335935)
+scale = Vector2(0.53125, 0.51118976)
 sprite_frames = SubResource("SpriteFrames_fdgxp")
 autoplay = "default"
 frame_progress = 0.048794296
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1511671280]
-position = Vector2(1, 0)
-shape = SubResource("CircleShape2D_k5wo0")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

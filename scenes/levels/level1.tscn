@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://chu068yttdrxg" path="res://scenes/enemy/special_enemy.tscn" id="6_plydf"]
 [ext_resource type="PackedScene" uid="uid://b1u01x0d08yul" path="res://scenes/observer.tscn" id="10_5ntmo"]
 [ext_resource type="PackedScene" uid="uid://dhbbqrgbixgft" path="res://scenes/objects/portal.tscn" id="11_nkeig"]
+[ext_resource type="AudioStream" uid="uid://c7j4mh17xolcv" path="res://assets/audio/Tears of Nostalgia.wav" id="12_nfihu"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_1iref"]
 tile_data = PackedInt32Array(0, 1703937, 1342177284, 65536, 1703937, 4, 131072, 1703937, 536870916, 196608, 1703937, 4, 1, 1703937, 1073741828, 65537, 1835009, 131076, 131073, 1835009, 196612, 196609, 1703937, 268435460, 2, 1835009, 262148, 65538, 1835009, 65540, 131074, 1835009, 262148, 196610, 1835009, 65540, 3, 1835009, 196612, 65539, 1835009, 131076, 131075, 1835009, 196612, 196611, 1835009, 131076)
@@ -4166,3 +4167,7 @@ position = Vector2(48, 49)
 [node name="Label" type="Label" parent="." unique_id=242736178]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2054666770]
+stream = ExtResource("12_nfihu")
+autoplay = true

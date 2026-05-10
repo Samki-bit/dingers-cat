@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://kn7wex50gpmm" path="res://assets/Symtext.ttf" id="1_l6cm7"]
 [ext_resource type="Texture2D" uid="uid://bblfqemneeg5f" path="res://assets/logo.png" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://dn1vabbqbrltk" path="res://assets/bg_question.png" id="2_wu84c"]
+[ext_resource type="AudioStream" uid="uid://bo07caubh32aj" path="res://assets/audio/chimi.mp3" id="5_8ln24"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
 texture = ExtResource("2_wu84c")
@@ -99,5 +100,10 @@ theme_override_constants/shadow_offset_y = 8
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 70
 text = "Dinger's Cat"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1361422518]
+stream = ExtResource("5_8ln24")
+volume_db = -10.004
+autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
