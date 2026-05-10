@@ -7,12 +7,12 @@ extends Node2D
 @export var observer_stay_time := 15.0
 @export var descend_duration := 1.0
 
-@export var countdown_label: Label
-
 var player
 
 var current_countdown: float
 var time_left: int
+
+var warning_active := false
 
 func _ready():
 	player = get_tree().get_first_node_in_group("character")
@@ -23,8 +23,6 @@ func _ready():
 
 func start_countdown_cycle():
 	time_left = int(current_countdown)
-
-	countdown_label.text = "Observer arriving in: " + str(time_left)
 
 	visible = false
 
@@ -37,7 +35,7 @@ func _on_timer_timeout():
 	arrive()
 
 func arrive():
-	# move observer above screen first
+	# place observer above screen first
 	$Sprite2D.position.y = -300
 
 	visible = true
@@ -50,8 +48,6 @@ func arrive():
 		Vector2($Sprite2D.position.x, -40),
 		descend_duration
 	)
-
-	countdown_label.text = "OBSERVER HAS ARRIVED"
 
 	if player:
 		player.can_switch_mode = false
@@ -76,9 +72,9 @@ func leave():
 	if player:
 		player.can_switch_mode = true
 
-	countdown_label.text = "Observer has left"
-
 	await tween.finished
+
+	warning_active = false
 
 	visible = false
 
@@ -94,5 +90,32 @@ func leave():
 func _on_countdown_update_timer_timeout() -> void:
 	time_left -= 1
 
-	if time_left > 0:
-		countdown_label.text = "Observer arriving in: " + str(time_left)
+	# warning starts at 5 seconds
+	if time_left == 5:
+		warning_active = true
+		start_warning_effects()
+
+func start_warning_effects():
+	var camera = get_viewport().get_camera_2d()
+
+	if camera:
+		var original_offset = camera.offset
+
+		while warning_active:
+
+			camera.offset = Vector2(
+				randf_range(-8, 8),
+				randf_range(-8, 8)
+			)
+
+			# horror flicker
+			if randi() % 2 == 0:
+				modulate = Color(0.5, 0.5, 0.5)
+			else:
+				modulate = Color(1, 1, 1)
+
+			await get_tree().create_timer(0.08).timeout
+
+		camera.offset = original_offset
+
+	modulate = Color(1, 1, 1)
