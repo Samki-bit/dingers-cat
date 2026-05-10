@@ -82,9 +82,11 @@ func handle_movement():
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if is_dashing:
 		velocity = direction * DASH_SPEED if direction != Vector2(0,0) else velocity
+		set_collision_mask_value(4, false)
 		if player_state == PlayerState.DEAD: set_collision_mask_value(2, false)
 	else:
 		set_collision_mask_value(2, true)
+		set_collision_mask_value(4, true)
 		velocity = direction * speed
 
 func handle_animation() -> void:
@@ -179,6 +181,7 @@ func take_damage(amount: int):
 
 func die():
 	queue_free()
+	get_tree().reload_current_scene()
 
 func start_dash():
 	is_dashing = true
