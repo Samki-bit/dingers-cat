@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blx6ji5p283rl" path="res://scripts/enemy.gd" id="1_gl05p"]
 [ext_resource type="Texture2D" uid="uid://5ovxj8mo8gug" path="res://assets/Crab/Crab_Idle.png" id="2_40wdo"]
 [ext_resource type="Texture2D" uid="uid://cxijo8r1dm5oh" path="res://assets/Crab/Crab_AttackA.png" id="3_tjssy"]
+[ext_resource type="AudioStream" uid="uid://c7vgryuk0dcgm" path="res://assets/audio/enemy_hurt.wav" id="4_tjssy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wtq4b"]
 radius = 5.0
@@ -129,6 +130,11 @@ animation = &"throw"
 autoplay = "idle"
 frame = 5
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=984386961]
+position = Vector2(2.999999, -7)
+scale = Vector2(0.78125006, 0.75000006)
+stream = ExtResource("4_tjssy")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="AttackZone" to="." method="_on_attack_zone_body_entered"]

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var enemy_door: StaticBody2D = $"../../AliveWorld/EnemyDoor"
+@onready var hurt_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 const MOVE_SPEED: int = 40
 var target: Node2D = null
@@ -67,6 +68,7 @@ func face_target(target_position: Vector2):
 		sprite.flip_h = dir.x < 0
 
 func take_damage(amount: int = 1):
+	hurt_audio.play()
 	health -= amount
 	print("enemy_health: ", health)
 	sprite.modulate = Color.WHITE * 5.0

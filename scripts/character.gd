@@ -28,6 +28,7 @@ var can_switch_mode := true
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
 @onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
+@onready var hurt_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var last_direction: String
 signal state_changed
@@ -170,6 +171,7 @@ func _on_mana_timer_timeout():
 			switch_state()
 
 func take_damage(amount: int):
+	hurt_audio.play()
 	health -= amount
 	health_bar._set_health(health)
 	if health <= 0:

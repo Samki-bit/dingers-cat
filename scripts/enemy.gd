@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var kibble = preload("res://scenes/objects/kibble.tscn")
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurt_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var target: Node2D = null
 var health: int = 10
@@ -47,6 +48,7 @@ func face_target(target_position: Vector2):
 		sprite.flip_h = dir.x < 0
 
 func take_damage(amount: int = 1):
+	hurt_audio.play()
 	health -= amount
 	print("enemy_health: ", health)
 	sprite.modulate = Color.WHITE * 5.0
