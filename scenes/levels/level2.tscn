@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dbldamirg6qju" path="res://scenes/objects/door.tscn" id="6_2kpvi"]
 [ext_resource type="PackedScene" uid="uid://npfi02adxrqw" path="res://scenes/objects/kibble.tscn" id="7_17msu"]
 [ext_resource type="AudioStream" uid="uid://c7j4mh17xolcv" path="res://assets/audio/Tears of Nostalgia.wav" id="12_8i1lk"]
+[ext_resource type="PackedScene" uid="uid://b1u01x0d08yul" path="res://scenes/observer.tscn" id="13_hgky1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dqr1q"]
 texture = ExtResource("1_ejalt")
@@ -5846,3 +5847,5 @@ position = Vector2(203, 58)
 stream = ExtResource("12_8i1lk")
 volume_db = -7.0
 autoplay = true
+
+[node name="Observer" parent="." unique_id=1736577623 instance=ExtResource("13_hgky1")]
