@@ -5,16 +5,20 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $CanvasLayer/ProgressBar
 @onready var hit_box_collision: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var hit_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
+@onready var boss_name: Label = $CanvasLayer/Name
 var direction : Vector2
+
+signal boss_died
  
 var health: = 100:
 	set(value):
 		health = value
 		progress_bar.value = value
 		if value <= 0:
+			boss_name.visible = false
 			progress_bar.visible = false
 			hit_box_collision.disabled = true
+			boss_died.emit()
 			find_child("FiniteStateMachine").change_state("Dead")
  
 func _ready():

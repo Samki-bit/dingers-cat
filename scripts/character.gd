@@ -32,13 +32,13 @@ var observer_watching := false
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
 @onready var health_bar: ProgressBar = $CanvasLayer/HealthBar
 @onready var hurt_audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var died_label: Label = $CanvasLayer/DiedLabel
 
 var last_direction: String
 signal state_changed
 
 func _ready():
-	print("PLAYER READY")
-	print(get_groups())
+	died_label.visible = false
 	mana_timer.wait_time = 1.0
 	mana_timer.autostart = true
 	mana_timer.start()

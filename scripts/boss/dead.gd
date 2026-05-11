@@ -1,5 +1,6 @@
 extends State
- 
+@onready var thanks: Label = $"../../CanvasLayer/Thanks"
+
 func enter():
 	super.enter()
 	animation_player.play("death")

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://blnnlp3h07uv1" path="res://assets/Cat Sprite Sheet -ve.png" id="4_bblvu"]
 [ext_resource type="PackedScene" uid="uid://blajvul1q3a60" path="res://scenes/character/mana_bar.tscn" id="6_7ex5l"]
 [ext_resource type="PackedScene" uid="uid://bo345g3l6vhxq" path="res://scenes/character/health_bar.tscn" id="6_bix7t"]
+[ext_resource type="FontFile" uid="uid://kn7wex50gpmm" path="res://assets/Symtext.ttf" id="7_bblvu"]
 [ext_resource type="AudioStream" uid="uid://c7q4mi4v8n3at" path="res://assets/audio/character_hurt.wav" id="7_bix7t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q52vl"]
@@ -1199,6 +1200,11 @@ animations = [{
 "name": &"dead_walk_up",
 "speed": 2.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_udt0m")
@@ -1280,6 +1286,23 @@ offset_top = 5.0
 offset_right = 57.0
 offset_bottom = 28.0
 text = "Kibble"
+
+[node name="DiedLabel" type="Label" parent="CanvasLayer" unique_id=1001983359]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -31.5
+offset_right = 119.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_bblvu")
+theme_override_font_sizes/font_size = 20
+text = "You Died
+Restarting Level.."
 
 [node name="HitBox" type="Area2D" parent="." unique_id=761832136]
 position = Vector2(0, -1)
