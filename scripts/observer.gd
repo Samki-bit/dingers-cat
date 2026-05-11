@@ -4,7 +4,7 @@ extends Node2D
 @export var countdown_decrease := 15.0
 @export var minimum_countdown := 30.0
 
-@export var observer_stay_time := 15.0
+@export var observer_stay_time := 3.0
 @export var descend_duration := 1.0
 
 var player
@@ -52,7 +52,8 @@ func arrive():
 
 	if player:
 		player.can_switch_mode = false
-
+		player.observer_watching = true
+	
 	$CountdownUpdateTimer.stop()
 
 	# observer stays visible
@@ -72,6 +73,8 @@ func leave():
 
 	if player:
 		player.can_switch_mode = true
+		player.observer_watching = false
+
 
 	await tween.finished
 

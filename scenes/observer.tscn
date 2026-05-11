@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://bykv3g1lyga6w" path="res://scripts/observer.gd" id="1_qeqtt"]
 [ext_resource type="Texture2D" uid="uid://bpgvbjq4cul3g" path="res://assets/pikachu.png" id="2_gt8iy"]
 
-[node name="Observer" type="Node2D" unique_id=1736577623]
+[node name="Observer" type="Node2D" unique_id=1736577623 groups=["observer"]]
 visible = false
 script = ExtResource("1_qeqtt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2105231180]
+z_index = 5
 position = Vector2(280, -35)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_gt8iy")

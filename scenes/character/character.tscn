@@ -1248,7 +1248,7 @@ script = ExtResource("1_cuyo6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2123965110]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_bix7t")
-animation = &"alive_idle_down"
+animation = &"alive_play"
 autoplay = "alive_idle_"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619106432]

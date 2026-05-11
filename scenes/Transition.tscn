@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhotw7xa7fsd0" path="res://assets/Cat Sprite Sheet.png" id="3_swlj3"]
 [ext_resource type="Texture2D" uid="uid://dffw7fyrwob5m" path="res://assets/left positions sprites.png" id="4_aavpm"]
 [ext_resource type="Texture2D" uid="uid://blnnlp3h07uv1" path="res://assets/Cat Sprite Sheet -ve.png" id="5_obj54"]
+[ext_resource type="Texture2D" uid="uid://bpgvbjq4cul3g" path="res://assets/pikachu.png" id="6_aavpm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q52vl"]
 atlas = ExtResource("3_swlj3")
@@ -1265,3 +1266,8 @@ scale = Vector2(8.84375, 8.531251)
 sprite_frames = SubResource("SpriteFrames_e26m6")
 animation = &"alive_idle_down"
 autoplay = "alive_idle_"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1089044619]
+visible = false
+position = Vector2(551, -255)
+texture = ExtResource("6_aavpm")

@@ -17,13 +17,16 @@ var max_mana: int = 100
 var health: int = 100
 var is_dashing: bool = false
 var is_walking: bool = false
+var is_licking: bool = false
 var is_transitioning: bool = false  
 var is_attacking: bool = false
 var can_switch_mode := true
+var observer_watching := false
 
 @onready var hit_box: Area2D = $HitBox
 @onready var dash_timer: Timer = $DashTimer
 @onready var mana_timer: Timer = $ManaTimer
+@onready var lick_timer: Timer = $LickTimer
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var mana_bar: ProgressBar = $CanvasLayer/ManaBar
@@ -61,13 +64,17 @@ func _on_animation_finished():
 		enter_real_state()
 
 func _physics_process(_delta: float) -> void:
+	handle_lick()
 	handle_movement()
 	handle_animation()
 	handle_combat()
+	check_observer_rules()
 	move_and_slide()
+	
+	
 
 func handle_movement():
-	if is_transitioning:
+	if is_transitioning or is_licking:
 		velocity = Vector2.ZERO
 		return 
 
@@ -78,7 +85,6 @@ func handle_movement():
 			print("not enough mana!")
 		else:
 			switch_state()
-	
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if is_dashing:
 		velocity = direction * DASH_SPEED if direction != Vector2(0,0) else velocity
@@ -90,7 +96,7 @@ func handle_movement():
 		velocity = direction * speed
 
 func handle_animation() -> void:
-	if is_transitioning:
+	if is_transitioning or is_licking:
 		return  
 	if player_state == PlayerState.ALIVE:
 		handle_state_animaiton("alive")
@@ -98,6 +104,8 @@ func handle_animation() -> void:
 		handle_state_animaiton("dead")
 
 func handle_combat():
+	if is_licking or player_state==PlayerState.DEAD:
+		return
 	hit_box.monitoring = false
 	var dir
 	if Input.is_action_just_pressed("jump") and not is_attacking and not is_transitioning:
@@ -181,7 +189,12 @@ func take_damage(amount: int):
 
 func die():
 	queue_free()
-	get_tree().reload_current_scene()
+	print("Player died")
+	Transition.death_reset()
+	var observer = get_tree().get_first_node_in_group("observer")
+	if observer:
+		observer.visible = false
+	# get_tree().reload_current_scene()
 
 func start_dash():
 	is_dashing = true
@@ -219,3 +232,24 @@ func collect_kibble() -> void:
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage()
+		
+func handle_lick():
+	if is_transitioning or is_attacking or is_dashing or is_walking:
+		return
+	# START licking
+	if Input.is_action_pressed("lick"):
+		if not is_licking:
+			is_licking = true
+			velocity = Vector2.ZERO
+			animation.play("alive_play")
+	# STOP licking
+	else:
+		if is_licking:
+			is_licking = false
+			
+func check_observer_rules():
+	if !observer_watching:
+		return
+
+	if !is_licking or is_attacking or is_dashing or player_state==PlayerState.DEAD:
+		die()

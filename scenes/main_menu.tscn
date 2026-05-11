@@ -106,4 +106,14 @@ stream = ExtResource("5_8ln24")
 volume_db = -10.004
 autoplay = true
 
+[node name="Button2" type="Button" parent="." unique_id=1201979056]
+layout_mode = 0
+offset_left = 248.00003
+offset_top = 335.99997
+offset_right = 390.00003
+offset_bottom = 366.99997
+rotation = 0.330529
+text = "Be the guinea cat"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
